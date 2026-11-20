@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>井上製パン｜京阪七条駅の老舗ベーカリー・オレンジピールとクーベルチュールチョコレート</title>
+<meta name="description" content="京都市東山区・京阪七条駅から徒歩約2分、1952年創業の老舗ベーカリー「井上製パン」。名物はクーベルチュールチョコレートを豪快にのせたパン。昔ながらのパンからハード系まで約100種類。朝7時開店、テイクアウト専門。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "井上製パン",
+  "address": {
+    "@type": "PostalAddress",
+    "postalCode": "605-0993",
+    "addressRegion": "京都府",
+    "addressLocality": "京都市東山区",
+    "streetAddress": "七条通本町西入ル221"
+  },
+  "telephone": "075-561-7836",
+  "openingHours": "Mo-Sa 07:00-17:00",
+  "priceRange": "¥130〜¥400",
+  "servesCuisine": "パン"
+}
+</script>
+<style>
+  :root{
+    --cream:#FAF4E8;
+    --paper:#FFFDF7;
+    --brick:#A34A28;
+    --brick-dark:#7E3A20;
+    --brown:#3B2A1E;
+    --ink:#4A382A;
+    --gold:#C08A3E;
+    --line:#E7D9C3;
+    --green:#4E7A3A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.85;
+    padding-top:34px;
+    padding-bottom:74px;
+  }
+  h1,h2,h3,.mincho{font-family:"Shippori Mincho",serif;}
+  img{max-width:100%;display:block;}
+  a{color:var(--brick);}
+
+  /* サンプル固定帯 */
+  .sample-band{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    background:var(--brown);color:#F5E9D5;
+    font-size:12px;letter-spacing:.08em;text-align:center;
+    padding:7px 10px;
+  }
+  .sample-watermark{
+    position:fixed;inset:0;z-index:150;pointer-events:none;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .sample-watermark span{
+    font-family:"Shippori Mincho",serif;font-weight:800;
+    font-size:26vw;color:rgba(163,74,40,.055);
+    transform:rotate(-24deg);letter-spacing:.1em;white-space:nowrap;
+  }
+
+  /* ヘッダー */
+  header{
+    position:sticky;top:34px;z-index:100;
+    background:rgba(250,244,232,.94);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-in{
+    max-width:960px;margin:0 auto;padding:10px 16px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{font-family:"Shippori Mincho",serif;font-weight:800;font-size:22px;color:var(--brown);letter-spacing:.12em;}
+  .logo small{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:500;font-size:10px;letter-spacing:.28em;color:var(--gold);}
+  .header-tel{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--brick);color:#fff;text-decoration:none;
+    font-weight:700;font-size:14px;border-radius:999px;padding:8px 16px;
+  }
+
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px;}
+
+  /* ヒーロー */
+  .hero{position:relative;}
+  .hero-img{width:100%;height:min(72vh,560px);object-fit:cover;}
+  .hero-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(43,28,16,.72) 0%,rgba(43,28,16,.18) 46%,rgba(43,28,16,.05) 70%);
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:26px 16px 30px;
+  }
+  .hero-in{max-width:960px;margin:0 auto;width:100%;color:#FFF8EC;}
+  .hero-kicker{font-size:13px;letter-spacing:.3em;color:#F0CE9E;font-weight:700;}
+  .hero h1{
+    font-size:clamp(30px,7.4vw,52px);font-weight:800;line-height:1.35;
+    margin:8px 0 6px;text-shadow:0 2px 14px rgba(0,0,0,.35);
+  }
+  .hero-sub{font-size:clamp(14px,3.6vw,17px);line-height:1.8;max-width:620px;}
+  .hero-note{font-size:11px;opacity:.85;margin-top:8px;}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .badge{
+    background:rgba(255,250,238,.95);color:var(--brick-dark);
+    font-size:12.5px;font-weight:700;border-radius:999px;padding:6px 13px;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);
+  }
+  .badge b{color:var(--brick);}
+
+  /* 営業ステータス */
+  .status-bar{
+    max-width:960px;margin:18px auto 0;padding:0 16px;
+  }
+  .status-card{
+    background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--gold);
+    border-radius:12px;padding:14px 18px;
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;
+    box-shadow:0 4px 16px rgba(90,60,30,.07);
+  }
+  .status-dot{width:11px;height:11px;border-radius:50%;background:#B9A888;flex:none;}
+  .status-dot.open{background:var(--green);box-shadow:0 0 0 4px rgba(78,122,58,.18);}
+  .status-main{font-weight:700;color:var(--brown);font-size:16.5px;}
+  .status-sub{font-size:13px;color:#8A7358;}
+
+  /* 数字カード */
+  .numbers{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+    max-width:960px;margin:16px auto 0;padding:0 16px;
+  }
+  .num-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:12px;
+    text-align:center;padding:16px 6px 12px;
+  }
+  .num-card .big{
+    font-family:"Shippori Mincho",serif;font-weight:800;
+    font-size:clamp(21px,5.4vw,30px);color:var(--brick);line-height:1.2;
+  }
+  .num-card .lbl{font-size:11.5px;color:#8A7358;letter-spacing:.06em;margin-top:4px;}
+  @media(max-width:560px){.numbers{grid-template-columns:repeat(2,1fr);}}
+
+  /* セクション共通 */
+  section{padding:52px 0 8px;}
+  .sec-head{text-align:center;margin-bottom:26px;}
+  .sec-head .en{font-size:11px;letter-spacing:.34em;color:var(--gold);font-weight:700;}
+  .sec-head h2{
+    font-size:clamp(23px,5.6vw,30px);font-weight:800;color:var(--brown);
+    margin-top:4px;line-height:1.45;
+  }
+  .sec-head .rule{width:44px;height:3px;background:var(--brick);border-radius:2px;margin:12px auto 0;}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.on{opacity:1;transform:none;}
+
+  /* 選ばれる理由 */
+  .reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  @media(max-width:760px){.reasons{grid-template-columns:1fr;}}
+  .reason{
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px 20px;
+  }
+  .reason .no{
+    font-family:"Shippori Mincho",serif;font-size:30px;font-weight:800;color:var(--gold);line-height:1;
+  }
+  .reason h3{font-size:18px;color:var(--brown);margin:10px 0 8px;line-height:1.55;}
+  .reason p{font-size:14.5px;}
+
+  /* 看板メニュー */
+  .signature{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:760px){.signature{grid-template-columns:1fr;}}
+  .sig-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    box-shadow:0 6px 20px rgba(90,60,30,.06);
+  }
+  .sig-card.first{grid-column:1/-1;}
+  .sig-card img{width:100%;height:230px;object-fit:cover;}
+  .sig-card.first img{height:min(46vw,360px);}
+  .sig-body{padding:18px 20px 20px;}
+  .sig-tag{
+    display:inline-block;background:var(--brick);color:#fff;font-size:11.5px;font-weight:700;
+    border-radius:999px;padding:3px 11px;letter-spacing:.08em;margin-bottom:8px;
+  }
+  .sig-tag.sub{background:var(--gold);}
+  .sig-body h3{font-size:19px;color:var(--brown);line-height:1.5;}
+  .sig-body p{font-size:14.5px;margin-top:6px;}
+  .price{font-family:"Shippori Mincho",serif;font-weight:800;color:var(--brick);font-size:19px;margin-top:8px;}
+  .price small{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:400;font-size:12px;color:#8A7358;}
+  .img-note{font-size:11px;color:#A08B6D;padding:8px 20px 0;}
+
+  /* 全メニュー */
+  .menu-table{
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  }
+  .menu-row{
+    display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+    padding:13px 20px;border-bottom:1px dashed var(--line);
+  }
+  .menu-row:last-child{border-bottom:none;}
+  .menu-row .name{font-weight:500;color:var(--brown);}
+  .menu-row .name small{display:block;font-weight:400;font-size:12.5px;color:#8A7358;}
+  .menu-row .yen{font-family:"Shippori Mincho",serif;font-weight:700;color:var(--brick);white-space:nowrap;}
+  .fineprint{font-size:12px;color:#A08B6D;margin-top:10px;}
+
+  /* 初めての方へ・お知らせ */
+  .guide{
+    background:#F3E8D2;border:1px solid var(--line);border-radius:14px;padding:22px 22px 10px;
+  }
+  .guide li{margin:0 0 12px 1.2em;font-size:15px;}
+  .news-list{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:8px 22px;}
+  .news-item{padding:14px 0;border-bottom:1px dashed var(--line);}
+  .news-item:last-child{border-bottom:none;}
+  .news-item .tag{
+    display:inline-block;font-size:11px;font-weight:700;color:var(--brick-dark);
+    border:1px solid var(--brick);border-radius:999px;padding:1px 9px;margin-bottom:5px;letter-spacing:.06em;
+  }
+  .news-item p{font-size:15px;}
+
+  /* 店主紹介 */
+  .owner{
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;
+    padding:24px;display:flex;gap:20px;align-items:flex-start;
+  }
+  .owner .mark{
+    flex:none;width:58px;height:58px;border-radius:50%;
+    background:var(--brick);color:#FFF3DF;display:flex;align-items:center;justify-content:center;
+    font-family:"Shippori Mincho",serif;font-weight:800;font-size:19px;
+  }
+  .owner h3{color:var(--brown);font-size:18px;margin-bottom:6px;}
+  .owner p{font-size:14.5px;}
+  @media(max-width:560px){.owner{flex-direction:column;}}
+
+  /* Instagram導線 */
+  .ig-banner{
+    background:linear-gradient(120deg,var(--brick) 0%,var(--brick-dark) 60%,#5F2C16 100%);
+    border-radius:16px;color:#FFF3DF;text-align:center;padding:30px 20px;
+  }
+  .ig-banner h3{font-size:21px;line-height:1.5;}
+  .ig-banner p{font-size:14px;opacity:.92;margin-top:6px;}
+  .ig-btn{
+    display:inline-block;margin-top:16px;background:#FFF8EC;color:var(--brick-dark);
+    font-weight:700;text-decoration:none;border-radius:999px;padding:12px 28px;font-size:15px;
+  }
+
+  /* 店舗情報 */
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:760px){.info-grid{grid-template-columns:1fr;}}
+  .info-table{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:8px 22px;}
+  .info-row{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:15px;}
+  .info-row:last-child{border-bottom:none;}
+  .info-row dt{flex:none;width:86px;font-weight:700;color:var(--brown);}
+  .info-row dd{flex:1;}
+  .map-box{border-radius:14px;overflow:hidden;border:1px solid var(--line);min-height:300px;}
+  .map-box iframe{width:100%;height:100%;min-height:300px;border:0;display:block;}
+
+  /* FAQ */
+  .faq{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:8px 22px;}
+  .faq-item{padding:14px 0;border-bottom:1px dashed var(--line);}
+  .faq-item:last-child{border-bottom:none;}
+  .faq-item .q{font-weight:700;color:var(--brown);font-size:15px;}
+  .faq-item .a{font-size:14.5px;margin-top:3px;}
+
+  /* フッター */
+  footer{
+    margin-top:56px;background:var(--brown);color:#EADBC2;padding:34px 16px 40px;text-align:center;
+  }
+  footer .f-logo{font-family:"Shippori Mincho",serif;font-weight:800;font-size:22px;letter-spacing:.12em;color:#FFF6E6;}
+  footer p{font-size:13px;margin-top:8px;line-height:1.9;}
+  footer a{color:#F0CE9E;}
+  .credit{font-size:11px;color:#B9A582;margin-top:16px;line-height:1.8;}
+
+  /* 固定アクションバー */
+  .action-bar{
+    position:fixed;left:0;right:0;bottom:0;z-index:180;
+    background:rgba(255,253,247,.97);border-top:1px solid var(--line);
+    display:grid;grid-template-columns:1fr 1fr 1fr;
+    padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+    gap:8px;box-shadow:0 -4px 18px rgba(90,60,30,.10);
+  }
+  .action-bar a{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    text-decoration:none;font-weight:700;font-size:14.5px;border-radius:10px;padding:13px 4px;
+  }
+  .ab-tel{background:var(--brick);color:#fff;}
+  .ab-route{background:#F3E8D2;color:var(--brick-dark);}
+  .ab-ig{background:var(--brown);color:#FFF3DF;}
+</style>
+</head>
+<body>
+
+<div class="sample-band">これはサンプルです。無断使用は禁止しています</div>
+<div class="sample-watermark"><span>SAMPLE</span></div>
+
+<header>
+  <div class="header-in">
+    <div class="logo">井上製パン<small>INOUE SEIPAN ・ SINCE 1952</small></div>
+    <a class="header-tel" href="tel:0755617836">☎ 075-561-7836</a>
+  </div>
+</header>
+
+<!-- ヒーロー -->
+<div class="hero">
+  <img class="hero-img" src="hero.webp" alt="オレンジピールとクーベルチュールチョコレートのパン（イメージ）">
+  <div class="hero-overlay">
+    <div class="hero-in">
+      <div class="hero-kicker">京都・七条 ／ 1952年創業のベーカリー</div>
+      <h1>チョコレートが、<br>ゴロゴロと顔を出すパン。</h1>
+      <p class="hero-sub">
+        京阪七条駅から徒歩約2分、三十三間堂の近く。<br>
+        1952年創業・三代目の小さなパン屋です。
+      </p>
+      <div class="badges">
+        <span class="badge">創業 <b>1952年</b>・三代目</span>
+        <span class="badge">Google <b>★4.4</b>・口コミ <b>246件</b></span>
+        <span class="badge">パンは <b>約100種類</b></span>
+      </div>
+      <p class="hero-note">※掲載写真はイメージです</p>
+    </div>
+  </div>
+</div>
+
+<!-- 営業ステータス -->
+<div class="status-bar">
+  <div class="status-card">
+    <span class="status-dot" id="statusDot"></span>
+    <span class="status-main" id="statusMain">本日の営業案内</span>
+    <span class="status-sub" id="statusSub">7:00〜17:00（なくなり次第終了）／定休日：日曜日・第3月曜日</span>
+  </div>
+</div>
+
+<!-- 数字カード -->
+<div class="numbers">
+  <div class="num-card"><div class="big">★4.4</div><div class="lbl">Google評価</div></div>
+  <div class="num-card"><div class="big">246件</div><div class="lbl">Google口コミ</div></div>
+  <div class="num-card"><div class="big">1952年</div><div class="lbl">創業・三代目</div></div>
+  <div class="num-card"><div class="big">約100種</div><div class="lbl">パンの品揃え</div></div>
+</div>
+
+<!-- 選ばれる理由 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="en">ABOUT</div>
+      <h2>七条で70年以上、<br>焼き続けてきました</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="reasons">
+      <div class="reason reveal">
+        <div class="no">01</div>
+        <h3>1952年創業、三代目の味</h3>
+        <p>戦後間もない1952年に始まったパン屋です。2016年に店をリニューアルし、今は三代目が焼いています。二代目の昔ながらのパンと、三代目の新しいパンが同じ棚に並びます。</p>
+      </div>
+      <div class="reason reveal">
+        <div class="no">02</div>
+        <h3>名物は、豪快なチョコレート</h3>
+        <p>セミハードの生地に、大きくカットしたクーベルチュールチョコレートをゴロゴロと。中にはオレンジピールのクリーム。店頭に並ぶのは朝8時頃からで、暑い時期はお休みする季節の看板です。</p>
+      </div>
+      <div class="reason reveal">
+        <div class="no">03</div>
+        <h3>約100種類、クリームも餡も自家製</h3>
+        <p>懐かしのパ
+...[truncated 13571 chars]ンからハード系、サンドイッチ、焼き菓子まで約100種類。パンによって使い分けるクリームや餡は自家製です。迷う時間も楽しい、通学路の名物パン屋です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 看板メニュー -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="en">SIGNATURE</div>
+      <h2>看板メニュー</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="signature">
+      <div class="sig-card first reveal">
+        <img src="hero.webp" alt="オレンジピールとクーベルチュールチョコレート（イメージ）">
+        <p class="img-note">※写真はイメージです</p>
+        <div class="sig-body">
+          <span class="sig-tag">名物</span>
+          <h3>オレンジピールと<br>クーベルチュールチョコレート</h3>
+          <p>歯切れの良いセミハード生地に、思わず二度見するほどたっぷりのクーベルチュールチョコレート。その下にはオレンジピールのクリームが隠れています。店頭に並ぶのは朝8時頃から。暑い時期はお休みする、季節限定の看板です。</p>
+          <p class="price"><small>価格は店頭でご確認ください（数が少ないため、前日までのお電話でのご予約がおすすめです）</small></p>
+        </div>
+      </div>
+      <div class="sig-card reveal">
+        <img loading="lazy" src="teacreampan.webp" alt="紅茶のクリームパン（イメージ）">
+        <p class="img-note">※写真はイメージです</p>
+        <div class="sig-body">
+          <span class="sig-tag sub">人気商品</span>
+          <h3>紅茶のクリームパン</h3>
+          <p>自家製の紅茶カスタードを使った人気のクリームパン。口に入れた瞬間、紅茶の風味がふわっと香ります。</p>
+          <p class="price">150円 <small>（税込・取材時点）</small></p>
+        </div>
+      </div>
+      <div class="sig-card reveal">
+        <img loading="lazy" src="cannele.webp" alt="カヌレ（イメージ）">
+        <p class="img-note">※写真はイメージです</p>
+        <div class="sig-body">
+          <span class="sig-tag sub">焼き菓子</span>
+          <h3>カヌレ</h3>
+          <p>もっちりとした生地が特徴の、フランスの焼き菓子。パン屋さんで買える甘いものとして、ファンの多い一品です。</p>
+          <p class="price">180円 <small>（税込・取材時点）</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 全メニュー -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="en">MENU</div>
+      <h2>メニューの一例</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="menu-table reveal">
+      <div class="menu-row"><span class="name">紅茶のクリームパン<small>自家製の紅茶カスタード</small></span><span class="yen">150円</span></div>
+      <div class="menu-row"><span class="name">カヌレ<small>もっちり生地のフランス焼き菓子</small></span><span class="yen">180円</span></div>
+      <div class="menu-row"><span class="name">リンゴのプチタルト</span><span class="yen">190円</span></div>
+      <div class="menu-row"><span class="name">クロワッサン<small>国産小麦使用</small></span><span class="yen">200円</span></div>
+      <div class="menu-row"><span class="name">バインミーサンド<small>蒸し鶏・チリソース・自家製なます・パクチーのベトナム風サンド</small></span><span class="yen">310円</span></div>
+      <div class="menu-row"><span class="name">栗とピーナッツ</span><span class="yen">310円</span></div>
+      <div class="menu-row"><span class="name">マフィン</span><span class="yen">130円</span></div>
+    </div>
+    <p class="fineprint">※店頭には約100種類のパンが並びます。上の価格は取材時点のものです。価格・品揃えは変更になる場合がありますので、最新情報は店頭・Instagramでご確認ください。名物のチョコレートのパンは価格が変動するため、店頭でご確認ください。</p>
+  </div>
+</section>
+
+<!-- 初めての方へ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="en">GUIDE</div>
+      <h2>初めての方へ</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="guide reveal">
+      <ul>
+        <li><b>テイクアウト専門</b>のお店です。席はありません。</li>
+        <li>人気店のため、<b>午前中のうちに売り切れてしまう</b>ことがあります。お目当てがある日は、お早めのご来店がおすすめです。</li>
+        <li>名物のチョコレートのパンは、<b>前日までのお電話でご予約</b>いただけます。ご予約は店頭・お電話のみ（DMでは受け付けていません）。</li>
+        <li>お支払いは<b>現金のみ</b>です。</li>
+        <li>駐車場はありません。近隣のコインパーキングをご利用ください。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- お知らせ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="en">NEWS</div>
+      <h2>お知らせ・季節のご案内</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="news-list reveal">
+      <div class="news-item">
+        <span class="tag">季節の看板</span>
+        <p>秋から冬は、名物「オレンジピールとクーベルチュールチョコレート」が店頭に並ぶ季節です（暑い時期はお休みします）。</p>
+      </div>
+      <div class="news-item">
+        <span class="tag">ご予約</span>
+        <p>チョコレートのパンは朝8時頃から店頭に並びます。数が少ないため、前日までのお電話でのご予約がおすすめです。</p>
+      </div>
+      <div class="news-item">
+        <span class="tag">最新情報</span>
+        <p>営業時間の変更・臨時休業・季節のパンの情報は、公式Instagramでお知らせしています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 店主紹介 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="en">OWNER</div>
+      <h2>作り手について</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="owner reveal">
+      <div class="mark">三代</div>
+      <div>
+        <h3>三代目が焼く、老舗のいま</h3>
+        <p>1952年の創業から、親子代々で工房に立ってきたパン屋です。二代目が作る昔なつかしのパン、三代目が作るハード系のパンやサンドイッチ、焼き菓子。世代の違うおいしさが、同じ棚に並んでいるのが井上製パンの楽しさです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Instagram導線 -->
+<section>
+  <div class="wrap">
+    <div class="ig-banner reveal">
+      <h3>焼きたて情報は、Instagramで</h3>
+      <p>季節のパン・営業の最新情報は、公式Instagramで発信しています。</p>
+      <a class="ig-btn" href="https://www.instagram.com/inoue_seipan1952/" target="_blank" rel="noopener">@inoue_seipan1952 を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 店舗情報 -->
+<section id="info">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="en">INFORMATION</div>
+      <h2>店舗情報</h2>
+      <div class="rule"></div>
+    </div>
+    <img loading="lazy" src="interior.webp" alt="店内のイメージ" style="width:100%;height:240px;object-fit:cover;border-radius:14px;margin-bottom:8px;">
+    <p class="fineprint" style="margin-bottom:14px;">※店内の写真はイメージです</p>
+    <div class="info-grid">
+      <dl class="info-table reveal">
+        <div class="info-row"><dt>店名</dt><dd>井上製パン（INOUE SEIPAN）</dd></div>
+        <div class="info-row"><dt>住所</dt><dd>〒605-0993<br>京都府京都市東山区七条通本町西入ル221</dd></div>
+        <div class="info-row"><dt>アクセス</dt><dd>京阪本線「七条」駅から徒歩約2分（三十三間堂・京都国立博物館の近く）</dd></div>
+        <div class="info-row"><dt>電話</dt><dd><a href="tel:0755617836">075-561-7836</a>（ご予約は店頭・お電話で）</dd></div>
+        <div class="info-row"><dt>営業時間</dt><dd>7:00〜17:00<br>※なくなり次第終了</dd></div>
+        <div class="info-row"><dt>定休日</dt><dd>日曜日・第3月曜日</dd></div>
+        <div class="info-row"><dt>席数</dt><dd>なし（テイクアウト専門）</dd></div>
+        <div class="info-row"><dt>駐車場</dt><dd>なし（近隣にコインパーキングあり）</dd></div>
+        <div class="info-row"><dt>支払い</dt><dd>現金のみ（カード・電子マネー不可）</dd></div>
+        <div class="info-row"><dt>創業</dt><dd>1952年（現在の店主は三代目）</dd></div>
+      </dl>
+      <div class="map-box reveal">
+        <iframe title="井上製パンの地図" loading="lazy" src="https://www.google.com/maps?q=%E4%BA%95%E4%B8%8A%E8%A3%BD%E3%83%91%E3%83%B3%20%E4%BA%AC%E9%83%BD%E5%B8%82%E6%9D%B1%E5%B1%B1%E5%8C%BA%E4%B8%83%E6%9D%A1%E9%80%9A%E6%9C%AC%E7%94%BA%E8%A5%BF%E5%85%A5%E3%83%AB221&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="en">FAQ</div>
+      <h2>よくあるご質問</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <p class="q">Q. 予約はできますか？</p>
+        <p class="a">はい。店頭とお電話（075-561-7836）で受け付けています。名物のチョコレートのパンは、前日までのご予約がおすすめです。DMでのご予約は受け付けていません。</p>
+      </div>
+      <div class="faq-item">
+        <p class="q">Q. 駐車場はありますか？</p>
+        <p class="a">専用駐車場はありません。近隣のコインパーキングをご利用ください。京阪「七条」駅からは徒歩約2分です。</p>
+      </div>
+      <div class="faq-item">
+        <p class="q">Q. カードや電子マネーは使えますか？</p>
+        <p class="a">お支払いは現金のみです。</p>
+      </div>
+      <div class="faq-item">
+        <p class="q">Q. 店内で食べられますか？</p>
+        <p class="a">テイクアウト専門のお店です。鴨川沿いや三十三間堂周辺で、買ったパンを楽しむ方も多いようです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">井上製パン</div>
+  <p>
+    〒605-0993 京都府京都市東山区七条通本町西入ル221<br>
+    京阪「七条」駅から徒歩約2分<br>
+    ☎ <a href="tel:0755617836">075-561-7836</a>／7:00〜17:00（なくなり次第終了）<br>
+    定休日：日曜日・第3月曜日<br>
+    Instagram：<a href="https://www.instagram.com/inoue_seipan1952/" target="_blank" rel="noopener">@inoue_seipan1952</a>
+  </p>
+  <p class="credit">
+    ※このページは制作サンプルです。掲載写真はすべてイメージです（実在の店舗写真ではありません）。<br>
+    価格・営業時間などの情報は公開情報をもとに作成しています。最新情報は店舗・公式Instagramでご確認ください。
+  </p>
+</footer>
+
+<!-- 固定アクションバー -->
+<nav class="action-bar">
+  <a class="ab-tel" href="tel:0755617836">☎ 電話する</a>
+  <a class="ab-route" href="https://www.google.com/maps/dir/?api=1&destination=%E4%BA%95%E4%B8%8A%E8%A3%BD%E3%83%91%E3%83%B3%20%E4%BA%AC%E9%83%BD%E5%B8%82%E6%9D%B1%E5%B1%B1%E5%8C%BA%E4%B8%83%E6%9D%A1%E9%80%9A%E6%9C%AC%E7%94%BA%E8%A5%BF%E5%85%A5%E3%83%AB221" target="_blank" rel="noopener">経路案内</a>
+  <a class="ab-ig" href="https://www.instagram.com/inoue_seipan1952/" target="_blank" rel="noopener">Instagram</a>
+</nav>
+
+<script>
+(function(){
+  // ライブ営業ステータス：月〜土 7:00-17:00、日曜・第3月曜は定休日
+  function isThirdMonday(d){
+    if(d.getDay()!==1) return false;
+    return Math.ceil(d.getDate()/7)===3;
+  }
+  function isClosedDay(d){
+    return d.getDay()===0 || isThirdMonday(d);
+  }
+  function fmt(d){
+    return d.getHours()+":"+String(d.getMinutes()).padStart(2,"0");
+  }
+  var now=new Date();
+  var dot=document.getElementById("statusDot");
+  var main=document.getElementById("statusMain");
+  var sub=document.getElementById("statusSub");
+  var mins=now.getHours()*60+now.getMinutes();
+  var OPEN=7*60, CLOSE=17*60;
+  if(isClosedDay(now)){
+    main.textContent="本日は定休日です";
+    sub.textContent="定休日：日曜日・第3月曜日／営業日は 7:00〜17:00（なくなり次第終了）";
+  }else if(mins<OPEN){
+    main.textContent="本日は "+fmt(new Date(now.setHours(7,0,0,0)))+" から営業します";
+    sub.textContent="営業時間 7:00〜17:00（なくなり次第終了）／名物のチョコレートのパンは8時頃から";
+  }else if(mins<CLOSE){
+    dot.classList.add("open");
+    main.textContent="営業中です（本日 7:00〜17:00）";
+    sub.textContent="なくなり次第終了します。午前中に売り切れることもあります";
+  }else{
+    main.textContent="本日の営業は終了しました";
+    sub.textContent="営業時間 7:00〜17:00（なくなり次第終了）／定休日：日曜日・第3月曜日";
+  }
+  // スクロール出現アニメーション
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target);}
+    });
+  },{threshold:0.12});
+  document.querySelectorAll(".reveal").forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>
